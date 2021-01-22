@@ -1,0 +1,209 @@
+// Variables
+$status-alive--color: #56e13a
+$status-dead--color: #e13a3a
+$status-unknown--color: #e1e13a
+
+// animations
+@keyframes twinkle
+    0%
+        width: 50%
+        height: 50%
+    100%
+        width: 100%
+        height: 100%
+
+*, *:before, *:after
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+html
+    font-size: 62.5%
+
+header
+    width: 100%
+    background: url('./images/bg2.jpg')
+    background-repeat: no-repeat
+    height: 30vh
+    background-size: cover
+    background-position: center
+
+header:before
+    content: ""
+    position: absolute
+    width: 100%
+    height: 30vh
+    top: 0
+    left: 0
+
+    background-image: linear-gradient(90deg, #1F2937, #111927)
+    opacity: 0.8
+
+.app
+    display: grid
+    gap: 2.5rem
+    place-items: center
+
+.container
+    width: 90%
+    height: 100%
+    margin: auto
+
+.content
+    width: 100%
+    height: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    position: relative
+
+.title
+    font-size: 5rem
+    padding: .1em
+    color: #82bf45
+    font-family: Arial, Helvetica, sans-serif
+
+.text
+    color: #17a3ac
+    font-size: 1.5rem
+    font-family: sans-serif
+
+.characters
+    width: 100%
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+
+.box
+    width: 35rem
+    background-color: #1f2937
+    margin: 0 1rem 2rem 1rem
+    border-radius: 5px
+    box-shadow: 4px 5px #d9e5d6
+    display: flex
+
+    img
+        width: 50%
+
+    .character
+        width: 50%
+        margin: 1rem
+        display: grid
+        grid-template-rows: 1fr auto
+        place-items: center
+        // display: flex
+        // flex-direction: column
+        // justify-content: center
+        // align-items: center
+
+        span
+            width: 100%
+            grid-row: 2
+
+    .name
+        grid-row: 1
+        font-family: Arial, Helvetica, sans-serif
+        font-size: 2.5rem
+        color: #aceb70
+
+    .specie
+        font-size: 1.5rem
+        padding: .25em
+        text-align: center
+        background-color: #364150
+        color: white
+        border-radius: 5px
+        font-family: Arial, Helvetica, sans-serif
+
+    .status
+        font-size: 1.2rem
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+        text-align: center
+        color: black
+        font-stretch: 2px
+        padding: .20em
+        border-radius: 5px
+        text-transform: lowercase
+        margin: 3px 0
+        letter-spacing: 2px
+
+    .Alive
+        background-color: $status-alive--color
+
+    .Dead
+        background-color: $status-dead--color
+
+    .unknown
+        background-color: $status-unknown--color
+
+.filter__container
+    width: 100px
+    display: grid
+    place-items: center
+    grid-template-columns: repeat(4, auto)
+    gap: 5px
+    outline: 5px dashed black
+    outline-offset: 10px
+
+    .opt
+        background-color: currentColor
+        width: 25px
+        height: 25px
+        border-radius: 50%
+        cursor: pointer
+        position: relative
+        -webkit-box-shadow: 0px 2.5px 0px 0px rgba(0,0,0,.6)
+        -moz-box-shadow: 0px 2.5px 0px 0px rgba(0,0,0,.6)
+        box-shadow: 0px 2.5px 0px 0px rgba(0,0,0,.6)
+
+        &:nth-child(1):before,
+        &:nth-child(2):before,
+        &:nth-child(3):before
+            visibility: hidden
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+            content: ""
+            position: absolute
+            width: 50%
+            height: 50%
+            border-radius: 50%
+            -webkit-box-shadow: 0px 0px 5px 1.5px currentColor
+            -moz-box-shadow: 0px 0px 5px 1.5px currentColor
+            box-shadow: 0px 0px 5px 1.5px currentColor
+
+        &:hover
+            &:before
+                visibility: visible
+                animation: twinkle .5s infinite alternate
+
+        &:active
+            -webkit-box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,.2)
+            -moz-box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,.2)
+            box-shadow: inset 0px 1px 0px 1px rgba(0,0,0,.2)
+            &:before
+                visibility: hidden
+
+    .opt--alive
+        grid-column: 1
+        color: $status-alive--color
+
+    .opt--dead
+        grid-column: 2
+        color: $status-dead--color
+
+    .opt--unknown
+        grid-column: 3
+        color: $status-unknown--color
+
+    .opt--all
+        font-family: Arial, Helvetica, sans-serif
+        letter-spacing: 1px
+        font-size: 1.2rem
+        grid-column: 4
+        display: grid
+        place-items: center
+        border-radius: 10px
+        width: 40px
+        background-color: #d9e5d6
